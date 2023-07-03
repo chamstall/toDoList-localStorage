@@ -39,10 +39,9 @@ function addTask (){
 // fonction pour ajouter une tache a liste
 function addTaskToList(task){
     let tasksList = document.querySelector("#tasksList");
-    let div = document.createElement ("div");
-    div.innerHTML = ` 
+    tasksList.innerHTML += ` 
         <div class = " row bg-light mb-3 mx-1 rounded-2">
-            <div class="col-10 rounded-2">
+            <div class="col-10 rounded-2 paragraphe">
                 <p> ${task} </p>
             </div>
             <div class="col-2 text-end d-flex align-items-center justify-content-center bg-warning p-2 rounded-end-2">
@@ -54,17 +53,15 @@ function addTaskToList(task){
             </div>
         </div>
     `
-    tasksList.appendChild(div);
 }
-
-
 
 // Fonction pour stocker les donnés avec le localstorage
 function saveTasksToLocalStorage (){
     let tasksList = document.querySelector("#tasksList");
+    let divs =  tasksList.querySelectorAll(".paragraphe");
     let tasks = [];
-    for(let i = 0 ; i < tasksList.children.length ; i++){
-        let tache = tasksList.children[i].textContent;
+    for(let i = 0 ; i < divs.length ; i++){
+        let tache = divs[i].innerText ;
         tasks.push(tache);
     }
     localStorage.setItem("tasks" , JSON.stringify(tasks));
